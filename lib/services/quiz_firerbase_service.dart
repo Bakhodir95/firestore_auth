@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firestore_auth/models/quiz.dart';
 
 class QuizFirerbaseService {
-  final _questionCollection = FirebaseFirestore.instance.collection('quizzes');
+  final _questionCollection = FirebaseFirestore.instance.collection('quiz');
 
   Stream<QuerySnapshot> getQuestions() async* {
     yield* _questionCollection.snapshots();

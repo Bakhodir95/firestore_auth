@@ -15,6 +15,8 @@ class _AlternativesWidgetState extends State<AlternativesWidget> {
   int _chosenaAnswer = -1;
   @override
   Widget build(BuildContext context) {
+    print("sad");
+
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Column(

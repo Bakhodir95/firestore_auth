@@ -46,15 +46,15 @@ class _QuizScreenState extends State<QuizScreen> {
               title: Text("Add Question"),
               trailing: Icon(Icons.keyboard_arrow_right),
             ),
-            Gap(10),
-            ListTile(
+            const Gap(10),
+            const ListTile(
               contentPadding: EdgeInsets.all(10),
               tileColor: Colors.amber,
               title: Text("Edit Question"),
               trailing: Icon(Icons.keyboard_arrow_right),
             ),
-            Gap(10),
-            ListTile(
+            const Gap(10),
+            const ListTile(
               contentPadding: EdgeInsets.all(10),
               tileColor: Colors.amber,
               title: Text("Delete Question"),
@@ -75,7 +75,7 @@ class _QuizScreenState extends State<QuizScreen> {
               icon: const Icon(Icons.logout_outlined))
         ],
       ),
-      backgroundColor: Color.fromARGB(255, 205, 22, 237),
+      backgroundColor: const Color.fromARGB(255, 205, 22, 237),
       body: StreamBuilder(
           stream: quizController.list,
           builder: (ctx, snapshot) {
@@ -100,11 +100,13 @@ class _QuizScreenState extends State<QuizScreen> {
                       itemCount: questions.length + 1,
                       itemBuilder: (BuildContext context, int index) {
                         if (index == questions.length) {
-                          return FlutterLogo(
+                          return const FlutterLogo(
                             size: 100,
                           );
                         } else {
                           final question = Quiz.fromJson(questions[index]);
+                          print(question);
+
                           return AlternativesWidget(
                             question: question,
                           );
