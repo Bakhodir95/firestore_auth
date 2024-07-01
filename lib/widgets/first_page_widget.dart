@@ -15,7 +15,7 @@ class _AlternativesWidgetState extends State<AlternativesWidget> {
   int _chosenaAnswer = -1;
   @override
   Widget build(BuildContext context) {
-    print("sad");
+    // print("sad");
 
     return Padding(
       padding: const EdgeInsets.all(20),
@@ -30,7 +30,7 @@ class _AlternativesWidgetState extends State<AlternativesWidget> {
               letterSpacing: 2,
             ),
           ),
-          for (int i = 0; i < 4; i++)
+          for (int i = 0; i < widget.question.variant.length; i++)
             Column(
               children: [
                 CheckboxListTile(

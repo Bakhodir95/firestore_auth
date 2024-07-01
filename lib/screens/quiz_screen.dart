@@ -105,8 +105,6 @@ class _QuizScreenState extends State<QuizScreen> {
                           );
                         } else {
                           final question = Quiz.fromJson(questions[index]);
-                          print(question);
-
                           return AlternativesWidget(
                             question: question,
                           );
