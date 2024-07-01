@@ -1,5 +1,4 @@
 import 'package:firestore_auth/controllers/register_controller.dart';
-import 'package:firestore_auth/screens/home_screen.dart';
 import 'package:firestore_auth/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -21,13 +20,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
     if (formkey.currentState!.validate()) {
       formkey.currentState!.save();
       await registerController.register(email!, password!);
-    }
-  }
-
-  submitLogin() async {
-    if (formkey.currentState!.validate()) {
-      formkey.currentState!.save();
-      await registerController.login(email!, password!);
     }
   }
 

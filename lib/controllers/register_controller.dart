@@ -10,4 +10,8 @@ class RegisterController {
     await fireAuth.createUserWithEmailAndPassword(
         email: email, password: password);
   }
+
+  resetPassword(String email) async {
+    await fireAuth.sendPasswordResetEmail(email: email);
+  }
 }
