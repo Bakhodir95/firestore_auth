@@ -1,4 +1,5 @@
 import 'package:firestore_auth/models/quiz.dart';
+import 'package:firestore_auth/utils/app_const.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -11,12 +12,10 @@ class AlternativesWidget extends StatefulWidget {
 }
 
 class _AlternativesWidgetState extends State<AlternativesWidget> {
-  List<bool> useranswer = [false, false, false, false];
+  // List<bool> useranswer = [false, false, false, false];
   int _chosenaAnswer = -1;
   @override
   Widget build(BuildContext context) {
-    // print("sad");
-
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Column(
@@ -37,6 +36,8 @@ class _AlternativesWidgetState extends State<AlternativesWidget> {
                   value: _chosenaAnswer == i,
                   onChanged: (value) {
                     _chosenaAnswer = i;
+                    AppConst.answers[widget.question.question] =
+                        i == widget.question.answer;
                     setState(() {});
                   },
                   title: Text(widget.question.variant[i]),

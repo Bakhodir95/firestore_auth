@@ -1,7 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firestore_auth/controllers/quiz_controller.dart';
 import 'package:firestore_auth/models/quiz.dart';
+import 'package:firestore_auth/screens/login_screen.dart';
+import 'package:firestore_auth/utils/app_const.dart';
 import 'package:firestore_auth/widgets/first_page_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
@@ -15,20 +18,7 @@ class QuizScreen extends StatefulWidget {
 
 class _QuizScreenState extends State<QuizScreen> {
   List<Widget> pages = [];
-  int _curPage = 0;
-  final Map<int, bool> _answeredQuestion = {};
   final _pageController = PageController();
-
-  void _onAnswerSelected(int pageIndex, bool isAnswered) {
-    setState(() {
-      _answeredQuestion[pageIndex] = isAnswered;
-    });
-  }
-
-  void _nextPage() {
-    _pageController.nextPage(
-        duration: const Duration(milliseconds: 300), curve: Curves.bounceOut);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,13 +28,11 @@ class _QuizScreenState extends State<QuizScreen> {
         child: ListView(
           children: [
             ListTile(
-              onTap: () {
-                // showDialog(context: context, builder: (ctx) => {});
-              },
+              onTap: () {},
               contentPadding: EdgeInsets.all(10),
               tileColor: Colors.amber,
-              title: Text("Add Question"),
-              trailing: Icon(Icons.keyboard_arrow_right),
+              title: const Text("Add Question"),
+              trailing: const Icon(Icons.keyboard_arrow_right),
             ),
             const Gap(10),
             const ListTile(
@@ -71,6 +59,12 @@ class _QuizScreenState extends State<QuizScreen> {
           IconButton(
               onPressed: () {
                 FirebaseAuth.instance.signOut();
+                setState(() {});
+                Navigator.pushReplacement(
+                    context,
+                    CupertinoPageRoute(
+                      builder: (context) => LoginScreen(),
+                    ));
               },
               icon: const Icon(Icons.logout_outlined))
         ],
@@ -100,8 +94,35 @@ class _QuizScreenState extends State<QuizScreen> {
                       itemCount: questions.length + 1,
                       itemBuilder: (BuildContext context, int index) {
                         if (index == questions.length) {
-                          return const FlutterLogo(
-                            size: 100,
+                          int c = 0;
+                          /* 
+                         {
+                         'eng eywgdygswr':true ~~ false
+                         }
+                         
+                         */
+                          AppConst.answers.forEach(
+                            (key, value) {
+                              if (value) c++;
+                            },
+                          );
+                          return Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Center(
+                                child: Text(
+                                  'Your correct answer is $c',
+                                  style: const TextStyle(
+                                      fontSize: 40,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              FilledButton(
+                                  onPressed: () {
+                                    setState(() {});
+                                  },
+                                  child: const Text("Restart"))
+                            ],
                           );
                         } else {
                           final question = Quiz.fromJson(questions[index]);
@@ -116,7 +137,7 @@ class _QuizScreenState extends State<QuizScreen> {
       floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
             _pageController.nextPage(
-                duration: Duration(seconds: 1), curve: Curves.linear);
+                duration: const Duration(seconds: 1), curve: Curves.linear);
           },
           label: const Text('Next')),
     );

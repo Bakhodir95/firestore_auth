@@ -15,7 +15,18 @@ Future<void> main() async {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(create: (context) {
@@ -25,8 +36,9 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         home: StreamBuilder(
             stream: FirebaseAuth.instance.authStateChanges(),
-            builder: (context, snapshot) {
-              if (!snapshot.hasData) {
+            builder: (context, AsyncSnapshot snapshot) {
+              print(snapshot);
+              if (snapshot.data == null || !snapshot.hasData) {
                 return const LoginScreen();
               }
               return const QuizScreen();

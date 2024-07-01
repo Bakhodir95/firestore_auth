@@ -3,7 +3,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 class RegisterController {
   final fireAuth = FirebaseAuth.instance;
   login(String email, String password) async {
-    await fireAuth.signInWithEmailAndPassword(email: email, password: password);
+    try {
+      await fireAuth.signInWithEmailAndPassword(
+          email: email, password: password);
+    } catch (e) {
+      rethrow;
+    }
   }
 
   register(String email, String password) async {

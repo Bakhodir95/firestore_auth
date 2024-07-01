@@ -1,5 +1,4 @@
 import 'package:firestore_auth/controllers/register_controller.dart';
-import 'package:firestore_auth/models/quiz.dart';
 import 'package:firestore_auth/screens/quiz_screen.dart';
 import 'package:firestore_auth/screens/register_screen.dart';
 import 'package:firestore_auth/screens/reset_screen.dart';
@@ -31,7 +30,12 @@ class _LoginScreenState extends State<LoginScreen> {
               builder: (context) => const QuizScreen(),
             ));
       } catch (e) {
-        print("$e");
+        print(e);
+        showDialog(
+            context: context,
+            builder: (context) => const AlertDialog(
+                  content: Text("Invalid email or password! Try again"),
+                ));
       }
     }
   }
