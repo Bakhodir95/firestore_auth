@@ -1,5 +1,7 @@
 import 'package:firestore_auth/controllers/register_controller.dart';
+import 'package:firestore_auth/screens/home_screen.dart';
 import 'package:firestore_auth/screens/register_screen.dart';
+import 'package:firestore_auth/screens/reset_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -20,7 +22,16 @@ class _LoginScreenState extends State<LoginScreen> {
   submitLogin() async {
     if (formkey.currentState!.validate()) {
       formkey.currentState!.save();
-      await registerController.login(email!, password!);
+      try {
+        await registerController.login(email!, password!);
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => HomeScreen(),
+            ));
+      } catch (e) {
+        print("$e");
+      }
     }
   }
 
@@ -58,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       border: OutlineInputBorder(),
                       label: Text("Enter Password")),
                 ),
-                const Gap(20),
+                const Gap(10),
                 FilledButton(
                     onPressed: submitLogin,
                     child: const Padding(
@@ -72,7 +83,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           MaterialPageRoute(
                               builder: (ctx) => const RegisterScreen()));
                     },
-                    child: const Text("SignUp"))
+                    child: const Text("SignUp")),
+                TextButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (ctx) => ResetScreen()));
+                    },
+                    child: const Text("Forgot password?"))
               ],
             ),
           ),

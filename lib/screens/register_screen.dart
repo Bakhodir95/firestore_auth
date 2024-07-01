@@ -19,8 +19,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
   submit() async {
     if (formkey.currentState!.validate()) {
       formkey.currentState!.save();
-      await registerController.register(email!, password!);
+      try {
+        await registerController.register(email!, password!);
+      } catch (e) {
+        return e;
+      }
     }
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (ctx) => const LoginScreen()));
   }
 
   @override
