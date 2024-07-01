@@ -22,7 +22,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       try {
         await registerController.register(email!, password!);
       } catch (e) {
-        return e;
+        print(e);
       }
     }
     Navigator.pushReplacement(

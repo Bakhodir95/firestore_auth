@@ -1,5 +1,7 @@
 import 'package:firestore_auth/controllers/register_controller.dart';
+import 'package:firestore_auth/models/quiz.dart';
 import 'package:firestore_auth/screens/home_screen.dart';
+import 'package:firestore_auth/screens/quiz_screen.dart';
 import 'package:firestore_auth/screens/register_screen.dart';
 import 'package:firestore_auth/screens/reset_screen.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => HomeScreen(),
+              builder: (context) => const QuizScreen(),
             ));
       } catch (e) {
         print("$e");

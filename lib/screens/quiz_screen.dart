@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firestore_auth/controllers/quiz_controller.dart';
 import 'package:firestore_auth/models/quiz.dart';
 import 'package:firestore_auth/widgets/first_page_widget.dart';
@@ -63,9 +64,16 @@ class _QuizScreenState extends State<QuizScreen> {
         ),
       ),
       appBar: AppBar(
-        backgroundColor: Colors.green,
-        title: const Text("Wlecome to our quiz!"),
+        backgroundColor: Colors.blue.shade800,
+        title: const Text("HomeScreen"),
         centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: () {
+                FirebaseAuth.instance.signOut();
+              },
+              icon: const Icon(Icons.logout_outlined))
+        ],
       ),
       backgroundColor: Color.fromARGB(255, 205, 22, 237),
       body: StreamBuilder(
