@@ -5,10 +5,13 @@ import 'package:provider/provider.dart';
 
 class CarsList extends StatelessWidget {
   const CarsList({super.key});
+  void deleteCar() async {
+    // await CarController
+  }
 
   @override
   Widget build(BuildContext context) {
-    final carsController = context.read<CarController>();
+    final carsController = context.read<CarsController>();
     // Provider.of<CarsController>(context, listen: false);
 
     return StreamBuilder(
@@ -38,7 +41,7 @@ class CarsList extends StatelessWidget {
                   width: 60,
                   height: 60,
                   child: Image.network(
-                    car.imageUrl.toString(),
+                    car.imageUrl,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -46,6 +49,8 @@ class CarsList extends StatelessWidget {
                   car.name,
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
+                trailing: IconButton(
+                    onPressed: () {}, icon: const Icon(Icons.delete)),
               );
             },
           );

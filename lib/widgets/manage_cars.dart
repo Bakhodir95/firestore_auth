@@ -19,7 +19,7 @@ class _ManageCarsState extends State<ManageCars> {
 
   void addCar() async {
     Messages.showLoadingDialog(context);
-    await context.read<CarController>().addCar(
+    await context.read<CarsController>().addCar(
           nameController.text,
           imageFile!,
         );
