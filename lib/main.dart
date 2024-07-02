@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firestore_auth/controllers/car_controller.dart';
 import 'package:firestore_auth/controllers/quiz_controller.dart';
 import 'package:firestore_auth/firebase_options.dart';
+import 'package:firestore_auth/screens/image_pick_screen.dart';
 import 'package:firestore_auth/screens/login_screen.dart';
 import 'package:firestore_auth/screens/quiz_screen.dart';
 import 'package:flutter/material.dart';
@@ -22,15 +24,9 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(create: (context) {
-      return QuizController();
+      return CarController();
     }, builder: (context, child) {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -41,7 +37,7 @@ class _MyAppState extends State<MyApp> {
               if (snapshot.data == null || !snapshot.hasData) {
                 return const LoginScreen();
               }
-              return const QuizScreen();
+              return const ImagePickScreen();
             }),
       );
     });
