@@ -27,7 +27,7 @@ class _ImagePickScreenState extends State<ImagePickScreen> {
                 Navigator.pushReplacement(
                     context,
                     CupertinoPageRoute(
-                      builder: (context) => LoginScreen(),
+                      builder: (context) => const LoginScreen(),
                     ));
               },
               icon: const Icon(Icons.logout_outlined))

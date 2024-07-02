@@ -1,11 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firestore_auth/controllers/car_controller.dart';
-import 'package:firestore_auth/controllers/quiz_controller.dart';
 import 'package:firestore_auth/firebase_options.dart';
+import 'package:firestore_auth/screens/home_screen.dart';
 import 'package:firestore_auth/screens/image_pick_screen.dart';
 import 'package:firestore_auth/screens/login_screen.dart';
-import 'package:firestore_auth/screens/quiz_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

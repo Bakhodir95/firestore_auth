@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class Car {
   String id;
   String name;
-  double imageUrl;
+  String imageUrl;
 
   Car({required this.id, required this.name, required this.imageUrl});
 
