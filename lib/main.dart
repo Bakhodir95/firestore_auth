@@ -36,7 +36,7 @@ class _MyAppState extends State<MyApp> {
               if (snapshot.data == null || !snapshot.hasData) {
                 return const LoginScreen();
               }
-              return const ImagePickScreen();
+              return const HomeScreen();
             }),
       );
     });
